@@ -2,11 +2,8 @@ import cv2
 import os
 import re
 import numpy as np
-# from numpy.core.fromnumeric import size
 import tensorflow as tf
-# from numpy import shape
 import random
-# from cv2 import textureFlattening
 import mahotas
 
 
