@@ -1,18 +1,19 @@
 # import os,sys
 import numpy as np
-import functions
+import Dataset
+from Descriptor import Descriptor as dsc
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
-class NNmodel:
+class NNmodel(object):
     #  Parameters
     learningRate = 0.1
-    epochs = 200
+    epochs = 50
 #     batchSize = 100
     displayStep = 1
        
  
-    def __init__(self, hidden1=256, hidden2=256, location = "data", desc = functions.getHOGDescriptor):
+    def __init__(self, hidden1=256, hidden2=256, location = "data", desc = dsc.getHOGDescriptor):
         self.numHidden1 = hidden1
         self.numHidden2 = hidden2
         self.numInput=0   #size of input vector
@@ -21,7 +22,7 @@ class NNmodel:
         
         self.mypath = location         
         #dataset variables
-        self.DATASET= functions.Data(self.mypath) #dataset class object
+        self.DATASET= Dataset.Data(self.mypath) #dataset class object
         self.training=None
         self.validation=None
         self.test=None
@@ -151,7 +152,7 @@ class NNmodel:
                 print("table")
                 print(self.classificationTable)
                 
-        print("ACCURACY RESULTS: ",self.classificationResults)
+        print("ACCURACY RESULTS: ",self.classificationResults, "  %: ", (sum(self.classificationResults)/len(resultsX)))
         print("ACCURACY TABLE")
         print(self.classificationTable)
         
@@ -159,7 +160,6 @@ class NNmodel:
         print("%%: ", classify)  
         
     def saveTestSeries(self):
-
         tmp = "\nMLP " +self.activeDescriptor.__name__+" "+self.numHidden1.__str__()+", "+self.numHidden2.__str__()+" "+self.mypath+" "+"\n" 
         with open("OUTPUT.txt", 'a') as file:
             file.write(tmp)
@@ -186,8 +186,10 @@ class NNmodel:
 
 
 if __name__ == "__main__":
-    myDescriptors =[functions.getHOGDescriptor ]
-    mynetwork = NNmodel(64,64, "data2",myDescriptors[0])
+#     myDescriptors =[Dataset.getHOGDescriptor ]
+    myDescriptors =[ dsc.getHOGDescriptor, dsc.getLocalBinaryPatterns, dsc.getHistogram,dsc.getHaralick ]
+    
+    mynetwork = NNmodel(256,256, "data2",myDescriptors[0])
     mynetwork.prepareDataset()
     print("training set length: ",len(mynetwork.training[0]))
     print("validation set length: ",len(mynetwork.validation[0]))
@@ -195,4 +197,4 @@ if __name__ == "__main__":
     mynetwork.start()
     mynetwork.plot()
     mynetwork.runTest()
-    mynetwork.saveTestSeries()
+#     mynetwork.saveTestSeries()
