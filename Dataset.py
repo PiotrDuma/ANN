@@ -38,11 +38,6 @@ class Data(object):
     def getUniqueLabels(self):
         return self.uniqueLabels
     
-    def _CNNloadImage(self,imgPath):
-        img = cv2.imread(imgPath,cv2.IMREAD_UNCHANGED)
-        img = cv2.resize(img, (100, 100)) 
-        img /=255.0
-        return img
     
     #return tables of images' paths and their labels
     def _getLearningImages(self):
@@ -59,7 +54,7 @@ class Data(object):
                 c_dir = os.path.join(imgPath, c)
                 walk = os.walk(c_dir).__next__()
                 label = ([0])*len(classes)
-                label[classes.index(c)]=1.0
+                label[classes.index(c)]=1
                 for sample in walk[2]:
                     if sample.endswith('.jpg') or sample.endswith('.jpeg') or sample.endswith('.png'):
                         imagesPath.append(os.path.join(c_dir, sample))
@@ -90,7 +85,7 @@ class Data(object):
                         imagesLabel.append(label)                         
         return imagesPath, imagesLabel
         
-    #return shuffled numpy table of 2 lists X,Y, of features and labels
+
     def _getImageData(self,filenames, labels, functionDescriptor):
         features= []
         for c in filenames:
@@ -100,6 +95,7 @@ class Data(object):
         dataset = np.array([features,label])
         return dataset
     
+        #return shuffled numpy table of 2 lists X,Y, of features and labels 
     def _shuffleData(self, tableX, tableY):
         data = list(zip(tableX,tableY))
         random.shuffle(data)
