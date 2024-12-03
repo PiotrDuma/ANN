@@ -1,8 +1,11 @@
 # ANN
-Image classifier implementation based on MLP and CNN networks. Analysing effectiveness and efficiency of networks with different models of descriptors.
+
+Artificial neural networks for image classification based on Multilayer Perceptron (MLP) and Convolutional Neural Networks (CNN) models. Three databases of fruit images are prepared for training and validation datasets, which are improved by white noise and rotation to keep its consistency and increase distinguishability at the same time. The availability of various image descriptors and models allows to study effectiveness and efficiency of neural networks, classification accuracy, and learning process.
 
 
-DATABASES:
+
+## Dataset
+
 There are three different databases containing pictures of fruits:
 
 1. Images of objects in the centre of picture with removed background.
@@ -13,5 +16,3 @@ There are three different databases containing pictures of fruits:
   
 3. Probably the hardsest problem of difficulty level. Images contains any number of fruits located randomply over the picture.
   source: http://doi.org/10.5281/zenodo.1310165
-
-
