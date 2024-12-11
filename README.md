@@ -84,7 +84,7 @@ If the running call has number of arguments other than 4, then program will run 
 python NNmodel.py
 ```
 
-There's much more flexibility to specify layer size, learning rate in class declaration(line 251). For advanced users, there's possibility to declare custom descriptors or change model parameters like function of neuron activation, learning algorithm or values of neurons' connection weights and biases. Feel free to explore. Tensorflow [documentation](Tensorflow documentation might be helpful [1](https://github.com/tensorflow/docs/tree/r1.14/site/en/api_docs).) might be helpful.
+There's much more flexibility to specify layer size, learning rate in class declaration(line 251). For advanced users, there's possibility to declare custom descriptors or change model parameters like function of neuron activation, learning algorithm or values of neurons' connection weights and biases. Feel free to explore. Tensorflow [documentation](https://github.com/tensorflow/docs/tree/r1.14/site/en/api_docs) might be helpful.
 
 ## Dataset
 
