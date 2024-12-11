@@ -10,7 +10,7 @@ This project works under Python 3.6.8 version, which has to be forced due to dep
 
 1. Install Python 3.6.8 [[download]](https://www.python.org/downloads/release/python-368/) and add it to your system variables [[guide]](https://realpython.com/add-python-to-path/).
 2. Install fallowing liblaries, fallow the commands in your system console
-+ tensoflow v1.14
++ tensoflow v1.14 [[doc]](https://github.com/tensorflow/docs/tree/r1.14/site/en/api_docs)
 ```
 python -m pip install tensorflow==1.14
 ```
@@ -45,6 +45,46 @@ python -m pip install scipy==1.5.4
 git clone https://github.com/PiotrDuma/ANN.git
 ```
 3. Navigate to following directory. Python project is ready to run.
+
+## Run
+
+There are two different entry points to the project that can be invoked via neural network architecture classes, NNmodel.py for MLP networks and CNNmodel.py for convolutional networks, respectively.
+
+### MLP
+
+a) console specified parameters
+
+To automate the process of running the project mutliple times, console arguments have been added. Program could be run using combination of preprogrammed input values in RUN_TEST_SCRIPT.bat windows script or type the command written down below:
+
+```
+python NNmodel.py x y z i
+```
+where:
+x - is the table index[0-2] of database:
+```
+227    DB = ["dataset1","dataset2","dataset3"]
+```
+y - is the table index[0-3] of image descriptor:
+```
+226    myDescriptors = [dsc.getHOGDescriptor, dsc.getLocalBinaryPatterns, dsc.getHistogram, dsc.mix]
+```
+z - is the table index[0-7] of layer size combination:
+```
+229       sizes = [(50,50),(100,100), (150,150), (200,200), (250,250),(200,100),(100,200),(500,500)]
+```
+z - is the table index[0-2] of learning rate:
+```
+230    learningRate = [0.01, 0.001, 0.0001]
+```
+
+b) incode specified parameters
+If the running call has number of arguments other than 4, then program will run with parameter values declared in code.
+
+```
+python NNmodel.py
+```
+
+There's much more flexibility to specify layer size, learning rate in class declaration(line 251). For advanced users, there's possibility to declare custom descriptors or change model parameters like function of neuron activation, learning algorithm or values of neurons' connection weights and biases. Feel free to explore. Tensorflow [documentation](Tensorflow documentation might be helpful [1](https://github.com/tensorflow/docs/tree/r1.14/site/en/api_docs).) might be helpful.
 
 ## Dataset
 
