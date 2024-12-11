@@ -2,6 +2,11 @@
 
 Artificial neural networks for image classification based on Multilayer Perceptron (MLP) and Convolutional Neural Networks (CNN) models. Three databases of fruit images are prepared for training and validation datasets, which are improved by white noise and rotation to keep its consistency and increase distinguishability at the same time. The availability of various image descriptors and models allows to study effectiveness and efficiency of neural networks, classification accuracy, and learning process.
 
+## Caution
+
+1. Project is running on Tensorflow 1.x version, which is actually deprecated.
+2. All image descriptors have been implemented in research purposes. Some of them like histogram of colours or local binary pattern may contain lack of desired information required to successfully train neural network. In other words, not every method of image description works in terms of MLP input data.  
+
 ## Instalation
 
 This project works under Python 3.6.8 version, which has to be forced due to deprecated interfaces of later released frameworks.
