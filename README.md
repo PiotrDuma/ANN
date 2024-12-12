@@ -65,19 +65,19 @@ To automate the process of running the project mutliple times, console arguments
 python NNmodel.py x y z i
 ```
 where:
-x - is the table index[0-2] of database:
+x - an index[0-2] of the database table:
 ```
 227    DB = ["dataset1","dataset2","dataset3"]
 ```
-y - is the table index[0-3] of image descriptor:
+y - an index[0-3] of the image descriptor table:
 ```
 226    myDescriptors = [dsc.getHOGDescriptor, dsc.getLocalBinaryPatterns, dsc.getHistogram, dsc.mix]
 ```
-z - is the table index[0-7] of layer size combination:
+z - an index[0-7] of the layer size combination table:
 ```
 229       sizes = [(50,50),(100,100), (150,150), (200,200), (250,250),(200,100),(100,200),(500,500)]
 ```
-z - is the table index[0-2] of learning rate:
+z - an index[0-2] of the learning rate table:
 ```
 230    learningRate = [0.01, 0.001, 0.0001]
 ```
@@ -90,6 +90,38 @@ python NNmodel.py
 ```
 
 There's much more flexibility to specify layer size, learning rate in class declaration(line 251). For advanced users, there's possibility to declare custom descriptors or change model parameters like function of neuron activation, learning algorithm or values of neurons' connection weights and biases. Feel free to explore. Tensorflow [documentation](https://github.com/tensorflow/docs/tree/r1.14/site/en/api_docs) might be helpful.
+
+### CNN
+
+Analogous to MLP networks, a convolutional network has two entry points. 
+
+a) console specified parameters
+
+There's an automated script to interate through parameter combinations of CNN and it's named RUN_TEST_SCRIPT_Conv.bat. The running flags go as written below:
+
+```
+python CNNmodel.py x y n i
+```
+where:
+x - an index[0-2] of the database table:
+```
+252    DB = ["dataset1","dataset2","dataset3"]
+```
+y - an index[0-4] of the image descriptor table:
+```
+251    modelShapes = [ModelShape._modelShape, ModelShape._modelShapeClassic, ModelShape._modelShapeKPPK, ModelShape._modelShapePKK, ModelShape._modelShapeKKK]
+```
+n - a parameter to distinguish files of saved output. Neglectable for single run.
+z - an index[0-2] of the learning rate table:
+```
+253    learningRate = [0.01, 0.001, 0.0001]
+```
+
+b) incode specified parameters
+Running command with number of parameters different than 4 will invoke run method with values defined in code, which can be specified in line 268.
+```
+        mynetwork = CNNmodel(DB[0],"./model/"+modelName, modelShapes[2], learningRate[1])
+```
 
 ## Dataset
 
